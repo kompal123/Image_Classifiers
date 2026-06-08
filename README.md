@@ -1,22 +1,53 @@
-# Breast Cancer Histopathology Image Classification
+# 🧬 Breast Cancer Histopathology Image Classification using Deep Learning
 
 ## Overview
 
-This project implements deep learning models for the classification of breast cancer histopathology images into **benign** and **malignant** categories using the **BreaKHis dataset**. The notebook explores different neural network architectures and transfer learning techniques to evaluate their performance on microscopic tissue images.
+This project implements and compares multiple deep learning approaches for **breast cancer histopathology image classification** using microscopic tissue images from the **BreaKHis dataset**. The objective is to automatically classify images into **benign** and **malignant** categories, demonstrating the application of artificial intelligence in medical image analysis.
 
-The project demonstrates an end-to-end image classification pipeline including dataset preprocessing, model training, evaluation, and visualization of classification performance.
+The notebook includes data preprocessing, dataset preparation, model development, training, evaluation, and comparison of different neural network architectures.
 
 ---
 
-## Features
+## Models Implemented
 
-* Histopathology image preprocessing
-* Automatic dataset organization and train/test splitting
-* Binary classification of breast cancer images
-* Fully connected neural network baseline
-* Transfer learning using **VGG16**
-* Performance evaluation using confusion matrices and classification metrics
-* Visualization of training and validation performance
+### 1. Convolutional Neural Network (CNN)
+
+A custom deep learning model built using TensorFlow/Keras for feature extraction and binary image classification.
+
+### 2. Fully Connected Neural Network (FCNN)
+
+A baseline dense neural network using flattened image inputs to compare performance against convolutional architectures.
+
+### 3. Transfer Learning (VGG16)
+
+A pre-trained VGG16 model is fine-tuned for breast cancer image classification, leveraging transfer learning to improve predictive performance.
+
+---
+
+## Dataset
+
+The project uses the **BreaKHis (Breast Cancer Histopathological Image Classification)** dataset, containing microscopic images of benign and malignant breast tumors.
+
+### Dataset classes
+
+* Benign
+* Malignant
+
+Images are automatically divided into training and testing datasets before model training.
+
+---
+
+## Workflow
+
+* Load and preprocess histopathology images
+* Create train/test directory structure
+* Generate image batches using `ImageDataGenerator`
+* Train CNN model
+* Train Fully Connected Neural Network
+* Train VGG16 Transfer Learning model
+* Evaluate model performance
+* Generate confusion matrices and classification reports
+* Compare classification accuracy across models
 
 ---
 
@@ -24,82 +55,41 @@ The project demonstrates an end-to-end image classification pipeline including d
 
 * Python
 * TensorFlow / Keras
+* PyTorch (dataset utilities)
 * NumPy
 * Matplotlib
 * Scikit-learn
-* Pandas
-* Seaborn
-
----
-
-## Dataset
-
-The project uses the **BreaKHis (Breast Cancer Histopathological Database)** containing microscopic images of benign and malignant breast tumors at different magnification factors.
-
-Dataset:
-https://www.kaggle.com/datasets/ambarish/breakhis
-
----
-
-## Workflow
-
-1. Load and organize histopathology images
-2. Split images into training and testing sets
-3. Apply image preprocessing and augmentation
-4. Train neural network models
-5. Evaluate classification performance
-6. Visualize confusion matrices and training curves
-
----
-
-## Models Implemented
-
-### Fully Connected Neural Network
-
-* Flatten layer
-* Dense (128)
-* Dropout
-* Dense (64)
-* Sigmoid output
-
-### Transfer Learning (VGG16)
-
-* Pretrained VGG16 feature extractor
-* Custom classification head
-* Fine-tuning for breast cancer image classification
+* OpenCV
+* PIL
+* tifffile
 
 ---
 
 ## Evaluation Metrics
 
+The models are evaluated using:
+
 * Accuracy
+* Precision
+* Recall
+* F1-score
 * Confusion Matrix
 * Classification Report
-* Training and Validation Loss
-* Training and Validation Accuracy
-
----
-
-## Future Improvements
-
-* Implement ResNet50 and EfficientNet architectures
-* Hyperparameter optimization using Optuna
-* Explainability with Grad-CAM and SHAP
-* Cross-validation
-* Model deployment using Streamlit or FastAPI
-* Docker containerization
-* Experiment tracking with MLflow
 
 ---
 
 ## Repository Structure
 
-```
-├── Image_classifiers.ipynb
-├── data/
-├── models/
+```text
+├── Source_code
+├── dataset/
+│   ├── train/
+│   │    ├── benign/
+│   │    └── malignant/
+│   └── test/
+│        ├── benign/
+│        └── malignant/
 ├── figures/
-├── requirements.txt
 └── README.md
 ```
 
@@ -107,35 +97,55 @@ https://www.kaggle.com/datasets/ambarish/breakhis
 
 ## Installation
 
+Clone the repository:
+
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/Image-Classification.git
+cd Image-Classification
+```
 
-cd repository
+Install dependencies:
 
+```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Run
-
-Open the notebook:
+Launch the notebook:
 
 ```bash
 jupyter notebook Image_classifiers.ipynb
 ```
 
-or
+---
 
-```bash
-jupyter lab
-```
+## Key Learning Outcomes
+
+* Medical image preprocessing
+* Deep learning for image classification
+* Transfer learning using VGG16
+* Binary classification of histopathology images
+* Performance evaluation of deep learning models
+* Comparative analysis of CNN and transfer learning approaches
 
 ---
 
-## Results
+## Limitations
 
-The project demonstrates the effectiveness of deep learning and transfer learning for automated breast cancer histopathology image classification and provides a reproducible workflow for biomedical image analysis.
+* Dataset paths are hardcoded and should be replaced with relative paths.
+* Data preprocessing and model training are contained in a single notebook rather than modular scripts.
+* Hyperparameter optimization and cross-validation are not included.
+* Model checkpointing and early stopping can be added for improved training stability.
+
+---
+
+## Future Improvements
+
+* Implement ResNet50, EfficientNet, and Vision Transformers (ViT)
+* Add Grad-CAM for model explainability
+* Perform hyperparameter optimization using Optuna
+* Integrate MLflow for experiment tracking
+* Deploy the trained model using Streamlit or FastAPI
+* Containerize the project using Docker
 
 ---
 
@@ -146,10 +156,17 @@ The project demonstrates the effectiveness of deep learning and transfer learnin
 M.Sc. Bioinformatics
 Freie Universität Berlin
 
-Research Interests:
+**Research Interests**
 
 * Bioinformatics
 * Machine Learning
-* Computational Biology
 * Medical Image Analysis
+* Computational Biology
 * AI for Healthcare
+* Deep Learning for Biomedical Applications
+
+---
+
+## License
+
+This project is intended for educational and research purposes. Please ensure compliance with the original dataset licensing terms before redistribution or commercial use.
